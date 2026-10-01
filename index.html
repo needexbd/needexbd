@@ -1,309 +1,653 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEEDEX - Online Marketplace</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEEDEX - Online Marketplace</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
 
-        body {
-            background: #f5f5f5;
-            color: #333;
-        }
+body{
+    background:#f5f5f5;
+    color:#222;
+}
 
-        header {
-            background: #f85606;
-            padding: 15px 5%;
-            color: white;
-        }
+/* HEADER */
+.header{
+    background:#f85606;
+    color:white;
+    padding:14px 5%;
+}
 
-        .topbar {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-        }
+.header-top{
+    max-width:1250px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    gap:25px;
+}
 
-        .logo {
-            font-size: 32px;
-            font-weight: bold;
-            min-width: 140px;
-        }
+.logo{
+    font-size:32px;
+    font-weight:800;
+    letter-spacing:1px;
+}
 
-        .search {
-            flex: 1;
-            display: flex;
-            background: white;
-            border-radius: 4px;
-            overflow: hidden;
-        }
+.search-box{
+    flex:1;
+    display:flex;
+    background:white;
+    border-radius:5px;
+    overflow:hidden;
+    height:45px;
+}
 
-        .search input {
-            flex: 1;
-            padding: 13px;
-            border: none;
-            outline: none;
-            font-size: 15px;
-        }
+.search-box input{
+    flex:1;
+    border:0;
+    outline:0;
+    padding:0 15px;
+    font-size:15px;
+}
 
-        .search button {
-            width: 55px;
-            border: none;
-            background: #ffe1d2;
-            cursor: pointer;
-        }
+.search-box button{
+    width:55px;
+    border:0;
+    background:#ffe1d5;
+    cursor:pointer;
+    font-size:18px;
+}
 
-        .cart {
-            font-size: 26px;
-            cursor: pointer;
-        }
+.header-link{
+    font-size:14px;
+    white-space:nowrap;
+    cursor:pointer;
+}
 
-        .banner {
-            margin: 20px auto;
-            width: 90%;
-            max-width: 1200px;
-            min-height: 250px;
-            background: linear-gradient(135deg, #ff6a00, #ff9a44);
-            border-radius: 8px;
-            color: white;
-            display: flex;
-            align-items: center;
-            padding: 40px;
-        }
+.cart{
+    font-size:25px;
+    cursor:pointer;
+}
 
-        .banner h1 {
-            font-size: 42px;
-            margin-bottom: 12px;
-        }
+/* NAVIGATION */
+.nav{
+    background:white;
+    border-bottom:1px solid #ddd;
+}
 
-        .banner p {
-            font-size: 18px;
-        }
+.nav-inner{
+    max-width:1250px;
+    margin:auto;
+    padding:12px 5%;
+    display:flex;
+    gap:28px;
+    overflow:auto;
+}
 
-        .section {
-            width: 90%;
-            max-width: 1200px;
-            margin: 25px auto;
-        }
+.nav-item{
+    white-space:nowrap;
+    font-size:14px;
+    cursor:pointer;
+}
 
-        .section-title {
-            font-size: 24px;
-            margin-bottom: 15px;
-        }
+.nav-item:hover{
+    color:#f85606;
+}
 
-        .categories {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-            gap: 12px;
-        }
+/* HERO */
+.hero{
+    max-width:1250px;
+    margin:18px auto;
+    padding:0 5%;
+}
 
-        .category {
-            background: white;
-            padding: 25px 10px;
-            text-align: center;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
+.hero-box{
+    min-height:310px;
+    border-radius:10px;
+    background:linear-gradient(120deg,#f85606,#ff9b55);
+    color:white;
+    display:flex;
+    align-items:center;
+    padding:45px;
+    overflow:hidden;
+}
 
-        .category:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
+.hero-content{
+    max-width:600px;
+}
 
-        .category-icon {
-            font-size: 35px;
-            margin-bottom: 10px;
-        }
+.hero-content h1{
+    font-size:46px;
+    margin-bottom:15px;
+}
 
-        .products {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 15px;
-        }
+.hero-content p{
+    font-size:19px;
+    line-height:1.5;
+    margin-bottom:25px;
+}
 
-        .product {
-            background: white;
-            border-radius: 6px;
-            overflow: hidden;
-            cursor: pointer;
-        }
+.hero-button{
+    display:inline-block;
+    background:white;
+    color:#f85606;
+    padding:13px 25px;
+    border-radius:5px;
+    font-weight:bold;
+    cursor:pointer;
+}
 
-        .product-image {
-            height: 180px;
-            background: #eee;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 50px;
-        }
+/* SECTION */
+.section{
+    max-width:1250px;
+    margin:28px auto;
+    padding:0 5%;
+}
 
-        .product-info {
-            padding: 14px;
-        }
+.section-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:16px;
+}
 
-        .product-name {
-            font-size: 16px;
-            margin-bottom: 8px;
-        }
+.section-title{
+    font-size:24px;
+}
 
-        .price {
-            color: #f85606;
-            font-size: 20px;
-            font-weight: bold;
-        }
+.view-all{
+    color:#f85606;
+    cursor:pointer;
+    font-size:14px;
+}
 
-        .old-price {
-            color: #999;
-            font-size: 13px;
-            text-decoration: line-through;
-            margin-left: 5px;
-        }
+/* CATEGORIES */
+.categories{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:12px;
+}
 
-        footer {
-            margin-top: 40px;
-            background: #222;
-            color: white;
-            text-align: center;
-            padding: 30px;
-        }
+.category{
+    background:white;
+    padding:22px 10px;
+    text-align:center;
+    border-radius:7px;
+    cursor:pointer;
+    transition:.2s;
+    border:1px solid #eee;
+}
 
-        @media (max-width: 600px) {
-            .topbar {
-                gap: 10px;
-                flex-wrap: wrap;
-            }
+.category:hover{
+    transform:translateY(-3px);
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
 
-            .logo {
-                font-size: 26px;
-            }
+.category-icon{
+    font-size:40px;
+    margin-bottom:10px;
+}
 
-            .search {
-                order: 3;
-                flex-basis: 100%;
-            }
+.category-name{
+    font-size:14px;
+}
 
-            .banner {
-                padding: 25px;
-            }
+/* PRODUCTS */
+.products{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
 
-            .banner h1 {
-                font-size: 30px;
-            }
-        }
-    </style>
+.product{
+    background:white;
+    border-radius:7px;
+    overflow:hidden;
+    cursor:pointer;
+    transition:.2s;
+    border:1px solid #eee;
+}
+
+.product:hover{
+    transform:translateY(-3px);
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.product-image{
+    height:220px;
+    background:#f1f1f1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:65px;
+}
+
+.product-info{
+    padding:15px;
+}
+
+.product-name{
+    font-size:15px;
+    min-height:38px;
+    margin-bottom:8px;
+}
+
+.price{
+    color:#f85606;
+    font-size:21px;
+    font-weight:bold;
+}
+
+.old-price{
+    color:#999;
+    text-decoration:line-through;
+    font-size:13px;
+    margin-left:6px;
+}
+
+.rating{
+    color:#f5a623;
+    font-size:13px;
+    margin-top:8px;
+}
+
+/* FOOTER */
+.footer{
+    background:#222;
+    color:#ddd;
+    margin-top:50px;
+    padding:40px 5%;
+}
+
+.footer-inner{
+    max-width:1250px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 1fr;
+    gap:30px;
+}
+
+.footer h3{
+    color:white;
+    margin-bottom:15px;
+}
+
+.footer p{
+    font-size:14px;
+    line-height:1.7;
+}
+
+.footer-bottom{
+    max-width:1250px;
+    margin:30px auto 0;
+    padding-top:20px;
+    border-top:1px solid #444;
+    text-align:center;
+    font-size:13px;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+
+    .categories{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .products{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .footer-inner{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .hero-content h1{
+        font-size:36px;
+    }
+}
+
+@media(max-width:600px){
+
+    .header-top{
+        flex-wrap:wrap;
+        gap:12px;
+    }
+
+    .logo{
+        font-size:27px;
+    }
+
+    .search-box{
+        order:3;
+        flex-basis:100%;
+    }
+
+    .header-link{
+        display:none;
+    }
+
+    .hero-box{
+        padding:30px 25px;
+        min-height:250px;
+    }
+
+    .hero-content h1{
+        font-size:30px;
+    }
+
+    .hero-content p{
+        font-size:15px;
+    }
+
+    .categories{
+        grid-template-columns:repeat(3,1fr);
+        gap:8px;
+    }
+
+    .category{
+        padding:15px 5px;
+    }
+
+    .category-icon{
+        font-size:30px;
+    }
+
+    .products{
+        grid-template-columns:repeat(2,1fr);
+        gap:10px;
+    }
+
+    .product-image{
+        height:160px;
+    }
+
+    .footer-inner{
+        grid-template-columns:1fr;
+    }
+}
+</style>
 </head>
 
 <body>
 
-<header>
-    <div class="topbar">
-        <div class="logo">NEEDEX</div>
+<!-- HEADER -->
+<header class="header">
 
-        <div class="search">
-            <input type="text" placeholder="Search products...">
-            <button>🔍</button>
-        </div>
+<div class="header-top">
 
-        <div class="cart">🛒</div>
-    </div>
+<div class="logo">NEEDEX</div>
+
+<div class="search-box">
+<input type="text" placeholder="Search products, brands and categories">
+<button>🔍</button>
+</div>
+
+<div class="header-link">Login</div>
+<div class="header-link">Sign Up</div>
+
+<div class="cart">🛒</div>
+
+</div>
+
 </header>
 
-<section class="banner">
-    <div>
-        <h1>Welcome to NEEDEX</h1>
-        <p>Everything you need, all in one place.</p>
-    </div>
+
+<!-- NAVIGATION -->
+<nav class="nav">
+
+<div class="nav-inner">
+
+<div class="nav-item">Categories</div>
+<div class="nav-item">Flash Sale</div>
+<div class="nav-item">New Arrivals</div>
+<div class="nav-item">Best Sellers</div>
+<div class="nav-item">Electronics</div>
+<div class="nav-item">Fashion</div>
+<div class="nav-item">Home & Living</div>
+
+</div>
+
+</nav>
+
+
+<!-- HERO -->
+<section class="hero">
+
+<div class="hero-box">
+
+<div class="hero-content">
+
+<h1>Welcome to NEEDEX</h1>
+
+<p>
+Discover products you need, great prices you love,
+and a marketplace designed for everyone.
+</p>
+
+<div class="hero-button">
+Shop Now
+</div>
+
+</div>
+
+</div>
+
 </section>
 
+
+<!-- CATEGORIES -->
 <section class="section">
-    <h2 class="section-title">Categories</h2>
 
-    <div class="categories">
+<div class="section-header">
 
-        <div class="category">
-            <div class="category-icon">📱</div>
-            Electronics
-        </div>
+<h2 class="section-title">Shop by Category</h2>
 
-        <div class="category">
-            <div class="category-icon">👕</div>
-            Fashion
-        </div>
+<div class="view-all">View All</div>
 
-        <div class="category">
-            <div class="category-icon">🏠</div>
-            Home & Living
-        </div>
+</div>
 
-        <div class="category">
-            <div class="category-icon">🍳</div>
-            Kitchen
-        </div>
 
-        <div class="category">
-            <div class="category-icon">💄</div>
-            Beauty
-        </div>
+<div class="categories">
 
-        <div class="category">
-            <div class="category-icon">🎁</div>
-            Others
-        </div>
+<div class="category">
+<div class="category-icon">📱</div>
+<div class="category-name">Electronics</div>
+</div>
 
-    </div>
+<div class="category">
+<div class="category-icon">👕</div>
+<div class="category-name">Fashion</div>
+</div>
+
+<div class="category">
+<div class="category-icon">🏠</div>
+<div class="category-name">Home & Living</div>
+</div>
+
+<div class="category">
+<div class="category-icon">🍳</div>
+<div class="category-name">Kitchen</div>
+</div>
+
+<div class="category">
+<div class="category-icon">💄</div>
+<div class="category-name">Beauty</div>
+</div>
+
+<div class="category">
+<div class="category-icon">🎁</div>
+<div class="category-name">Others</div>
+</div>
+
+</div>
+
 </section>
 
+
+<!-- PRODUCTS -->
 <section class="section">
-    <h2 class="section-title">Featured Products</h2>
 
-    <div class="products">
+<div class="section-header">
 
-        <div class="product">
-            <div class="product-image">📱</div>
-            <div class="product-info">
-                <div class="product-name">Smart Gadget</div>
-                <div class="price">৳699</div>
-            </div>
-        </div>
+<h2 class="section-title">Featured Products</h2>
 
-        <div class="product">
-            <div class="product-image">🍳</div>
-            <div class="product-info">
-                <div class="product-name">Kitchen Product</div>
-                <div class="price">৳899</div>
-            </div>
-        </div>
+<div class="view-all">View All</div>
 
-        <div class="product">
-            <div class="product-image">💡</div>
-            <div class="product-info">
-                <div class="product-name">Smart Light</div>
-                <div class="price">৳599</div>
-            </div>
-        </div>
+</div>
 
-        <div class="product">
-            <div class="product-image">🎧</div>
-            <div class="product-info">
-                <div class="product-name">Wireless Headphone</div>
-                <div class="price">৳1,299</div>
-            </div>
-        </div>
 
-    </div>
+<div class="products">
+
+
+<div class="product">
+
+<div class="product-image">📱</div>
+
+<div class="product-info">
+
+<div class="product-name">
+Smart Gadget
+</div>
+
+<div>
+<span class="price">৳699</span>
+<span class="old-price">৳899</span>
+</div>
+
+<div class="rating">
+★★★★★
+</div>
+
+</div>
+
+</div>
+
+
+<div class="product">
+
+<div class="product-image">🍳</div>
+
+<div class="product-info">
+
+<div class="product-name">
+Premium Kitchen Product
+</div>
+
+<div>
+<span class="price">৳899</span>
+<span class="old-price">৳1,099</span>
+</div>
+
+<div class="rating">
+★★★★★
+</div>
+
+</div>
+
+</div>
+
+
+<div class="product">
+
+<div class="product-image">💡</div>
+
+<div class="product-info">
+
+<div class="product-name">
+Smart LED Light
+</div>
+
+<div>
+<span class="price">৳599</span>
+<span class="old-price">৳799</span>
+</div>
+
+<div class="rating">
+★★★★☆
+</div>
+
+</div>
+
+</div>
+
+
+<div class="product">
+
+<div class="product-image">🎧</div>
+
+<div class="product-info">
+
+<div class="product-name">
+Wireless Headphone
+</div>
+
+<div>
+<span class="price">৳1,299</span>
+<span class="old-price">৳1,599</span>
+</div>
+
+<div class="rating">
+★★★★★
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
 </section>
 
-<footer>
-    <h3>NEEDEX</h3>
-    <p>Online Marketplace</p>
-    <p>© 2026 NEEDEX. All rights reserved.</p>
+
+<!-- FOOTER -->
+<footer class="footer">
+
+<div class="footer-inner">
+
+<div>
+<h3>NEEDEX</h3>
+<p>
+Your online marketplace for products you need.
+Shop, discover and enjoy a better online shopping experience.
+</p>
+</div>
+
+<div>
+<h3>Customer Care</h3>
+<p>Help Center</p>
+<p>Track Order</p>
+<p>Returns</p>
+</div>
+
+<div>
+<h3>About NEEDEX</h3>
+<p>About Us</p>
+<p>Contact Us</p>
+<p>Privacy Policy</p>
+</div>
+
+<div>
+<h3>Seller</h3>
+<p>Become a Seller</p>
+<p>Seller Center</p>
+<p>Seller Support</p>
+</div>
+
+</div>
+
+<div class="footer-bottom">
+
+© 2026 NEEDEX. All rights reserved.
+
+</div>
+
 </footer>
 
 </body>
