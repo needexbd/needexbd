@@ -561,5 +561,67 @@ const supabaseClient = window.supabase.createClient(
   supabaseUrl,
   supabaseKey
 );
+    <script>
+
+async function loadProducts() {
+
+  const { data, error } = await supabaseClient
+    .from('products')
+    .select('*')
+    .eq('is_active', true)
+    .order('id', { ascending: false });
+
+  const productList = document.getElementById('product-list');
+
+  if (error) {
+    console.error(error);
+    productList.innerHTML = '<p>Products load failed.</p>';
+    return;
+  }
+
+  productList.innerHTML = data.map(product => {
+
+    const oldPrice = Number(product.price) + Number(product.discount || 0);
+
+    return `
+      <div class="product">
+
+        <div class="product-image">
+          ${product.image_url
+            ? <img src="${product.image_url}" alt="${product.name}">
+            : '🛍️'}
+        </div>
+
+        <div class="product-info">
+
+          <div class="product-name">
+            ${product.name}
+          </div>
+
+          <div>
+            <span class="price">৳${product.price}</span>
+            ${
+              product.discount > 0
+                ? <span class="old-price">৳${oldPrice}</span>
+                : ''
+            }
+          </div>
+
+          <div class="rating">
+            ★★★★★
+          </div>
+
+        </div>
+
+      </div>
+    `;
+
+  }).join('');
+
+}
+
+loadProducts();
+
+</script>
 </script>
 </html>
