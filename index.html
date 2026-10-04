@@ -579,42 +579,40 @@ const supabaseKey = "sb_publishable_XXxv7Pw0PlxHBTsSUiuK8w_wQ8xQkVu";
     return;
   }
 
-  productList.innerHTML = data.map(product => {
-    const oldPrice = Number(product.price) + Number(product.discount || 0);
+productList.innerHTML = data.map(product => {
+  const oldPrice = Number(product.price) + Number(product.discount || 0);
 
-    return `
-      <div class="product">
-        <div class="product-image">
+  return `
+    <div class="product">
+      <div class="product-image">
+        ${
+          product.image_url
+            ? <img src="${product.image_url}" alt="${product.name}">
+            : '🛍️'
+        }
+      </div>
+
+      <div class="product-info">
+        <div class="product-name">
+          ${product.name}
+        </div>
+
+        <div>
+          <span class="price">৳${product.price}</span>
           ${
-            product.image_url
-              ? <img src="${product.image_url}" alt="${product.name}">
-              : '🛍️'
+            product.discount > 0
+              ? <span class="old-price">৳${oldPrice}</span>
+              : ''
           }
         </div>
 
-        <div class="product-info">
-
-          <div class="product-name">
-            ${product.name}
-          </div>
-
-          <div>
-            <span class="price">৳${product.price}</span>
-            ${
-              product.discount > 0
-                ? <span class="old-price">৳${oldPrice}</span>
-                : ''
-            }
-          </div>
-
-          <div class="rating">
-            ★★★★★
-          </div>
-
+        <div class="rating">
+          ★★★★★
         </div>
       </div>
-    `;
-  }).join('');
+    </div>
+  `;
+}).join('');
 }
 loadProducts();
 
