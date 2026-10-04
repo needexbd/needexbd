@@ -594,8 +594,9 @@ const supabaseKey = "sb_publishable_XXxv7Pw0PlxHBTsSUiuK8w_wQ8xQkVu";
             <span class="price">৳${product.price}</span>
             ${
               product.discount > 0
-? `<span class="old-price">৳${oldPrice}</span>` 
-            }"
+? ` <span class="old-price">৳${oldPrice}</span>
+: ''
+}
           </div>
 
           <div class="rating">
